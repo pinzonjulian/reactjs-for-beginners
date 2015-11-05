@@ -100,7 +100,7 @@ var StorePicker = React.createClass({
   Routes
 */
 
-var routes = (
+var routes = ( 
   <Router>
     <Route path="/" component={StorePicker}/>
     <Route path="/store/:storeId" component={App}/>

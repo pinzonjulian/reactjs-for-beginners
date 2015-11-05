@@ -18,6 +18,8 @@ var Navigation = ReactRouter.Navigation;
 var createBrowserHistory = require('history/lib/createBrowserHistory');
 
 
+var h = require('./helpers')
+
 /*
   Create APP Component
 */
@@ -84,6 +86,9 @@ var Inventory = React.createClass({
   }
 })
 
+/*
+  Create StorePicker Component
+*/
 
 
 var StorePicker = React.createClass({
@@ -97,7 +102,7 @@ var StorePicker = React.createClass({
 			<form className="store-selector">
 				{/*// To use a variable inside HTML code, wrap it in curly braces*/}
 				<h2>Pelase enter a store {name} </h2>
-				<input type="text" ref="storeId" required/>
+				<input type="text" ref="storeId" defaultValue={h.getFunName()} required/>
 				<input type="submit" />
 			</form>
 			)

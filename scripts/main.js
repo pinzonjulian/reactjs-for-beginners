@@ -3,7 +3,7 @@
 var React = require('react');
 // Assing content of react-dom package to ReactDom variable
 // This allows react to render to HTML since react can be used to render to apps and other stuff
-// var ReactDom = require('react-dom');
+var ReactDom = require('react-dom');
 
 var ReactRouter = require('react-router');
 var Router = ReactRouter.Router;

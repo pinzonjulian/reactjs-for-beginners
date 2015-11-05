@@ -92,6 +92,15 @@ var Inventory = React.createClass({
 
 
 var StorePicker = React.createClass({
+  goToStore : function(event){
+    event.preventDefault();
+    // Get data from input
+    // this is the component
+    // refs refers to the ref in the input field. Refs references to that input value
+    var storeId = this.refs.storeId.value;
+    console.log(storeId);
+    // Transition from StorePicker to App component
+  },
 	// The only thing EVERY component needs its a render method
 	render: function(){
 		var name = 'Julian'; 
@@ -99,7 +108,7 @@ var StorePicker = React.createClass({
 		// Return is followed by parenthesis to allow multiline html. Easier to read and write!
 		return(
 			// Return ONE ELEMENT ONLY. It can have any number of nested elements but it must be a single parent.
-			<form className="store-selector">
+			<form className="store-selector" onSubmit={this.goToStore}>
 				{/*// To use a variable inside HTML code, wrap it in curly braces*/}
 				<h2>Pelase enter a store {name} </h2>
 				<input type="text" ref="storeId" defaultValue={h.getFunName()} required/>

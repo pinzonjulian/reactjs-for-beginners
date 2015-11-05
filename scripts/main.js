@@ -1,10 +1,14 @@
 // Assign whatever is in the react package to the variable React. 
 // React is written with CAPITAL R. It's a good practice. We will use React to create multiple components
 var React = require('react');
-
 // Assing content of react-dom package to ReactDom variable
 // This allows react to render to HTML since react can be used to render to apps and other stuff
-var ReactDom = require('react-dom');
+// var ReactDom = require('react-dom');
+
+var ReactRouter = require('react-router');
+var Router = ReactRouter.Router;
+var Route = ReactRouter.Route;
+var Navigation = ReactRouter.Navigation;
 
 /*
   Create APP Component
@@ -15,7 +19,8 @@ var App = React.createClass ({
 		return(
 			<div className="catch-of-the-day">
 				<div className="menu">
-          <Header />
+        {/*tagline is arbitrarily created by me. It could be anything. Those are the properties of a component, in this case, the header component.*/}
+          <Header tagline="Fresh Seafood Market"/>
         </div>
         <Order />
         <Inventory />
@@ -30,8 +35,19 @@ var App = React.createClass ({
 
 var Header = React.createClass({
   render: function(){
+    console.log(this.params);
     return (
-      <p>Header</p>
+      <header className="top">
+        <h1>
+          Catch 
+          <span className="ofThe">
+            <span className="of">of</span>
+            <span className="the">the</span> 
+          </span>
+          Day
+        </h1>
+        <h3 className="tagline"><span>{this.props.tagline}</span></h3>
+      </header>
     )
   }
 })
@@ -80,10 +96,26 @@ var StorePicker = React.createClass({
 	}
 })
  
+/*
+  Routes
+*/
+
+var routes = (
+  <Router>
+    <Route path="/" component={StorePicker}/>
+    <Route path="/store/:storeId" component={App}/>
+  </Router>
+)
+
+
+
+
+
+
 
 // This renders our StorePicker component inside the selected element in the dom, in this case #main. 
 // The element where the component will be put in can be selected using getElementById too. It's the same thing.
-ReactDom.render(<App/>, document.querySelector('#main'));
+ReactDom.render(routes, document.querySelector('#main'));
 
 
 

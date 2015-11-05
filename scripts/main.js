@@ -5,10 +5,18 @@ var React = require('react');
 // This allows react to render to HTML since react can be used to render to apps and other stuff
 var ReactDom = require('react-dom');
 
+
+// Assign variables to react-router
 var ReactRouter = require('react-router');
 var Router = ReactRouter.Router;
 var Route = ReactRouter.Route;
 var Navigation = ReactRouter.Navigation;
+// This uses the createBrowserHistory to eliminate use HTML5 hash feature to change url without re
+// HTML 5 push state: feature that allows url change without refreshing the page. 
+// npm install history
+// This will load in the required code to be able to do push state
+var createBrowserHistory = require('history/lib/createBrowserHistory');
+
 
 /*
   Create APP Component
@@ -95,15 +103,27 @@ var StorePicker = React.createClass({
 			)
 	}
 })
+
+/*
+  Not found
+*/
  
+var NotFound = React.createClass({
+  render: function(){
+    return <h1>Not Found!</h1>
+  }
+})
+
 /*
   Routes
 */
 
+// ReactRouter works with createBrowserHistory
 var routes = ( 
-  <Router>
-    <Route path="/" component={StorePicker}/>
-    <Route path="/store/:storeId" component={App}/>
+  <Router history={createBrowserHistory()}>
+    <Route path="/" component={StorePicker} />
+    <Route path="/store/:storeId" component={App} />
+    <Route path="*" component={NotFound} />
   </Router>
 )
 
